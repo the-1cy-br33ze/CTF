@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FTP Server 2000</title>
+  <link rel="stylesheet" href="/ftp/static/style.css">
+  <style>
+    .file-content { 
+      white-space: pre-wrap;
+      background: #000;
+      border: 1px solid #0f0;
+      padding: 10px;
+      margin: 10px 0;
+    }
+    .error { color: #f00; }
+  </style>
+</head>
+<body class="crt-effect">
+  <pre class="banner">
+             _____        ____    U  ___ u   ____      _____      _       _           ____     ___       ___       ___      
+    ___     |_ " _|     U|  _"\ u  \/"_ \/U |  _"\ u  |_ " _| U  /"\  u  |"|         |___"\   / _"\  u  / _"\  u  / _"\  u  
+   |_"_|      | |       \| |_) |/  | | | | \| |_) |/    | |    \/ _ \/ U | | u       U __) | | / U |/  | / U |/  | / U |/   
+    | |      /| |\       |  __/.-,_| |_| |  |  _ <     /| |\   / ___ \  \| |/__      \/ __/ \| \// |,-.| \// |,-.| \// |,-. 
+  U/| |\u   u |_|U       |_|    \_)-\___/   |_| \_\   u |_|U  /_/   \_\  |_____|     |_____|u \___/(_/  \___/(_/  \___/(_/  
+.-,_|___|_,-._// \\_      ||>>_       \\     //   \\_  _// \\_  \\    >>  //  \\      <<  //    //        //        //       
+\_)-' '-(_/(__) (__)    (__)__)     (__)   (__)  (__)(__) (__)(__)  (__)(_")("_)    (__)(__)  (__)      (__)      (__)      
+  </pre>
+
+  <div class="ftp-interface">
+    <% if(cmd === 'LIST') { %>
+      <table class="file-list">
+        <tr>
+          <th>Имя файла</th>
+          <th>Дата</th>
+          <th>Размер</th>
+        </tr>
+        <%- output %>
+      </table>
+    <% } else { %>
+      <div class="file-content">
+        <%- helpers.rawHtml(output) %>
+      </div>
+    <% } %>
+
+    <div class="status-bar">
+      <marquee>Текущая сессия: <%= user.toUpperCase() %>@ITPORTAL2000</marquee>
+  </div>
+</body>
+</html>

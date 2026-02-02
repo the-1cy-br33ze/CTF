@@ -1,0 +1,69 @@
+body {
+    background: #000 url('/bg.gif');
+    color: #0f0;
+    font-family: 'Terminal', monospace;
+}
+
+.crt-effect {
+    animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+    0% {
+        opacity: 0.8;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.7;
+    }
+}
+
+.ftp-output td {
+    border: 1px solid #0f0;
+    padding: 5px;
+    vertical-align: top;
+}
+
+.error {
+    color: #f00;
+    text-shadow: 0 0 10px #f00;
+}
+
+body {
+    background: #000 url('/ftp/static/bg.gif');
+    color: #0f0;
+    font-family: 'Courier New', monospace;
+    margin: 0;
+    padding: 20px;
+}
+
+.file-list {
+    border: 2px solid #0f0;
+    width: 100%;
+    margin: 15px 0;
+}
+
+.file-list td,
+.file-list th {
+    border: 1px solid #0f0;
+    padding: 8px;
+    text-align: left;
+}
+
+.file-content {
+    border: 2px dashed #0f0;
+    padding: 15px;
+    margin: 20px 0;
+    white-space: pre-wrap;
+}
+
+.help-text {
+    border: 1px solid #0f0;
+    padding: 10px;
+    margin-bottom: 20px;
+    background: #002000;
+}

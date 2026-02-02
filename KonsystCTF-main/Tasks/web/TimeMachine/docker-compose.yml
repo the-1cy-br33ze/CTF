@@ -1,0 +1,9 @@
+services:
+  web:
+    image: dhxgc/consist:timemachine-portal
+    ports:
+      - 3000:3000
+    environment:
+      - NODE_ENV=production
+  ftp:
+    image: dhxgc/consist:timemachine-ftp

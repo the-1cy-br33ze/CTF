@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>System Core</title>
+    <style>
+        body {
+            margin: 0;
+            background: #000;
+            overflow: hidden;
+            font-family: 'Courier New', monospace;
+        }
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        .debug-overlay {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            color: #0F01;
+            font-size: 6px;
+            mix-blend-mode: difference;
+            pointer-events: none;
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="matrix"></canvas>
+    <div class="debug-overlay">2F7379732F6572725F6C6F67</div>
+    <script>
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+-=[]{}|;:,.<>?~";
+        const fontSize = 14;
+        const hexChars = "0123456789ABCDEF";
+
+        let animationId = null;
+        let timeoutIds = [];
+        let columns = [];
+        let activeSymbols = [];
+        let ivCycle = 0;
+
+        function init() {
+            timeoutIds.forEach(id => clearTimeout(id));
+            timeoutIds = [];
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+                animationId = null;
+            }
+
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            columns = Array(Math.floor(canvas.width / fontSize)).fill(1);
+            
+            activeSymbols = [];
+            ivCycle = 0;
+            
+            generateNewIV();
+            animationId = requestAnimationFrame(draw);
+        }
+
+        function generateNewIV() {
+            const ivString = "IV:" + Array.from({length:16}, () =>
+                hexChars[Math.floor(Math.random()*16)]).join('');
+
+            const centerCol = Math.floor(columns.length / 2);
+            const startCol = Math.max(0, centerCol - Math.floor(ivString.length/2));
+
+            activeSymbols = ivString.split('').map((char, i) => ({
+                char,
+                col: startCol + i,
+                y: -50,
+                startTime: 0,
+                visible: false,
+                targetY: Math.floor(canvas.height/2) + (i % 2)*20
+            }));
+
+            ivCycle = 0;
+            scheduleNextSymbol();
+        }
+
+        function scheduleNextSymbol() {
+            if(ivCycle >= activeSymbols.length) {
+                const timeoutId = setTimeout(() => generateNewIV(), 2000);
+                timeoutIds.push(timeoutId);
+                return;
+            }
+
+            const delay = ivCycle === 0 ? 0 : 5000 + Math.random()*15000;
+            const timeoutId = setTimeout(() => {
+                activeSymbols[ivCycle].visible = true;
+                activeSymbols[ivCycle].startTime = Date.now();
+                ivCycle++;
+                scheduleNextSymbol();
+            }, delay);
+            timeoutIds.push(timeoutId);
+        }
+
+        function draw() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+            columns.forEach((y, i) => {
+                const char = chars[Math.floor(Math.random()*chars.length)];
+                ctx.fillText(char, i * fontSize, y * fontSize);
+                if(y * fontSize > canvas.height && Math.random() > 0.975) columns[i] = 0;
+                columns[i]++;
+            });
+
+            ctx.fillStyle = '#F00';
+            activeSymbols.forEach(symbol => {
+                if(!symbol.visible) return;
+
+                const elapsed = Date.now() - symbol.startTime;
+                symbol.y = Math.min(symbol.targetY, symbol.y + 2);
+
+                if(elapsed < 4000) {
+                    ctx.fillText(symbol.char, symbol.col * fontSize, symbol.y);
+                }
+
+                if(elapsed > 4000) {
+                    symbol.visible = false;
+                    symbol.y = -50;
+                }
+            });
+
+            animationId = requestAnimationFrame(draw);
+        }
+
+        const ws = new WebSocket(`ws://${location.host}/data_stream`);
+        ws.onerror = () => console.error("Stream corrupted");
+
+        init();
+        window.addEventListener('resize', init);
+    </script>
+</body>
+</html>

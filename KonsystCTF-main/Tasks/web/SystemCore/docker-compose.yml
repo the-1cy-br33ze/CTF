@@ -1,0 +1,5 @@
+services:
+  matrix:
+    image: dhxgc/consist:systemcore
+    ports:
+      - 5000:5000

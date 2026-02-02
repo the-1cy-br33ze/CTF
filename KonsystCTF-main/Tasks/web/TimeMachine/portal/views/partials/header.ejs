@@ -1,0 +1,19 @@
+<header class="header">
+  <div>
+    <h1 style="margin:0;font-size:<%= theme === 'retro' ? '24px' : '32px' %>">
+      <%= theme === 'retro' ? 'IT Portal 2000' : 'Future Tech' %>
+    </h1>
+  </div>
+  <nav>
+    <a href="/" class="button">Главная</a>
+    <a href="/about" class="button">О нас</a>
+    <a href="/contact" class="button">Контакты</a>
+    <a href="/toggle-theme" class="button">
+      <%= theme === 'retro' ? 'Современная версия' : 'Ретро версия' %>
+    </a>
+    <% if(themeErrors.includes('blocked')) { %>
+      <span class="error-message">Похоже, ваш клиент слишком современный. Доступ закрыт.</span>
+    <% } %>
+  </nav>
+</header>
+<script src="/modern/main.js"></script>

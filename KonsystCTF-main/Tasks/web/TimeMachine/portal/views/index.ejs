@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= theme === 'retro' ? 'IT Portal 2000' : 'Future Tech' %></title>
+  <link rel="stylesheet" href="/<%= theme %>/style.css">
+</head>
+<body>
+  <%- include('partials/header') %>
+  
+  <div class="content">
+    <% if(theme === 'retro') { %>
+      <h2>Последние новости</h2>
+      
+      <table class="news-table">
+        <tr>
+          <td colspan="2"><h3>Windows XP вышла в релиз!</h3></td>
+        </tr>
+        <tr>
+          <td width="150">
+            <img src="/retro/xp.jpg" alt="Windows XP" style="border:1px solid #000;">
+            <p class="img-caption">Скриншот новой ОС</p>
+          </td>
+          <td>
+            <p>25 октября 2001 года Microsoft выпустила новую операционную систему...</p>
+            <ul>
+              <li>Новый интерфейс Luna</li>
+              <li>Улучшенная стабильность</li>
+              <li>Поддержка NTFS</li>
+            </ul>
+            <div class="comments">
+              <h4>Комментарии (3):</h4>
+              <div class="comment">
+                <strong>User123:</strong> Наконец-то нормальная ОС!
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+
+      <div class="news-block">
+        <h3>Новый процессор Pentium 4</h3>
+        <img src="/retro/pentium4.jpg" alt="Pentium 4" align="left" hspace="10">
+        <p>Intel представляет процессор с архитектурой NetBurst...</p>
+        <div class="specs">
+          <table>
+            <tr><th>Частота</th><td>1.4 GHz</td></tr>
+            <tr><th>Кэш L2</th><td>256 KB</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="news-block">
+        <h3>Новый FTP-сервер!</h3>
+        <img src="/retro/ftp.jpg" alt="FTP" align="left" hspace="10">
+        <p>Мы смогли создать по настоящему защищенный анонимный FTP-сервер. 
+          <br>
+          Он идеален и попробовать его можно <a href="/ftp">здесь</a> (guest/guest)</p>
+      </div>
+
+    <% } else { %>
+      <div class="news-grid">
+        <article class="news-card">
+          <img src="/modern/ai-chip.jpg" alt="AI Chip">
+          <div class="news-content">
+            <h3>Нейроморфные чипы нового поколения</h3>
+            <p class="meta">15 марта 2024 | Технологии</p>
+            <p>Компания NeuroTech анонсировала чипы с архитектурой...</p>
+            <div class="tags">
+              <span>#AI</span>
+              <span>#Hardware</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="news-card">
+          <img src="/modern/quantum.jpg" alt="Quantum">
+          <div class="news-content">
+            <h3>Квантовый компьютер доступный для бизнеса</h3>
+            <p class="meta">14 марта 2024 | Инновации</p>
+            <p>IBM выпустила коммерческую версию квантового...</p>
+            <div class="stats">
+              <div class="stat-item">
+                <span>1000+</span>
+                <small>кубитов</small>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="featured">
+        <h2>Главная новость недели</h2>
+        <div class="featured-content">
+          <img src="/modern/cyber.png" alt="Cybersecurity">
+          <div>
+            <h3>Прорыв в кибербезопасности</h3>
+            <p>Новый алгоритм шифрования на основе блокчейна...</p>
+            <button class="read-more">Подробнее</button>
+          </div>
+        </div>
+      </div>
+    <% } %>
+  </div>
+</body>
+</html>
