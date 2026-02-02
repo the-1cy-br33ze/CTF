@@ -1,0 +1,190 @@
+body {
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    background: #f0f0f0;
+    font-family: 'Courier New', monospace;
+}
+
+.board {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    text-shadow: 2px 2px 0 #fff;
+    margin-bottom: 40px;
+}
+
+.announcements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 20px;
+    margin-bottom: 40px;
+}
+
+.note {
+    position: relative;
+    padding: 25px;
+    min-height: 200px;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    overflow: visible;
+    background: #fff9c4;
+}
+
+.note:hover {
+    transform: rotate(0deg) scale(1.05) !important;
+    z-index: 2;
+}
+
+.tape {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+    width: 80px;
+    height: 30px;
+    background: rgba(55, 55, 55, 0.5);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
+}
+
+.note-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+}
+
+/* Цвета */
+.note.neon-red {
+    background: #bababa;
+    border: 3px solid #bbbbbb;
+}
+
+.note.protected {
+    background: #e6e6fa;
+    border: 3px dashed #9370db;
+}
+
+.note.yellow { background: #fff9c4; }
+.note.pink { background: #ffcdd2; }
+.note.green { background: #c8e6c9; }
+.note.blue { background: #bbdefb; }
+
+/* Метки */
+.protection-label {
+    color: #9370db;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 0 white;
+}
+
+.system-label {
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    background: #dfd2d2;
+    color: rgb(58, 58, 58);
+    padding: 8px 15px;
+    transform: rotate(-15deg);
+    border-radius: 3px;
+    font-size: 0.9em;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+.timestamp {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 0.8em;
+    color: #666;
+}
+
+/* Форма */
+.post-form {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    max-width: 600px;
+    margin: 40px auto;
+}
+
+textarea {
+    width: calc(100% - 40px);
+    height: 100px;
+    margin: 0 10px 15px 10px;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    resize: vertical;
+    font-family: inherit;
+    font-size: 16px;
+}
+
+.protect-check {
+    display: block;
+    margin: 15px 10px;
+    font-weight: bold;
+    color: #666;
+}
+
+button {
+    background: #ffeb3b;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    margin: 10px;
+    float: right;
+}
+
+button:hover {
+    background: #fdd835;
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+/* Страница объявления */
+.note-page {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.note-page .note {
+    transform: none !important;
+    cursor: default;
+    margin: 0 auto;
+}
+
+.note-page a {
+    display: inline-block;
+    margin-top: 30px;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    background: #f0f0f0;
+    border-radius: 5px;
+}
+
+.content {
+    font-size: 1.1em;
+    line-height: 1.4;
+    margin-bottom: 15px;
+    padding: 5px 10px;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+    hyphens: auto;
+}

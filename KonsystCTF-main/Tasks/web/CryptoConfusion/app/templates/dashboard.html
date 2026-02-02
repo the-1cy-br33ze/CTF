@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Личный кабинет{% endblock %}
+
+{% block content %}
+    <h1>Добро пожаловать, {{ user_data.user }}!</h1>
+    
+    <section>
+        <h2>Ваш баланс</h2>
+        <div class="balance">
+            <p>BTC: <strong>0.000000</strong></p>
+            <p>ETH: <strong>0.000000</strong></p>
+            <p>USDT: <strong>0.00</strong></p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Последние операции</h2>
+        <table>
+            <tr>
+                <th>Дата</th>
+                <th>Тип</th>
+                <th>Сумма</th>
+            </tr>
+            <tr>
+                <td>2024-03-15</td>
+                <td>Пополнение</td>
+                <td>+1000 USDT</td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h3>API-доступ</h3>
+        <p>
+            Для интеграции с торговыми ботами используйте 
+            <a href="/api-docs">документацию нашего API</a>.
+        </p>
+    </section>
+
+    {% if user_data.role == "admin" %}
+        <section style="background: #f0f0f0; padding: 15px;">
+            <h3>Административная панель</h3>
+            <p>Перейти к <a href="/admin">аудиту операций</a>.</p>
+        </section>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Регистрация{% endblock %}
+
+{% block content %}
+    <h1>Создание аккаунта</h1>
+    
+    <form method="POST" action="/register">
+        <div>
+            <label>Имя пользователя:</label>
+            <input type="text" name="username" required>
+        </div>
+        
+        <div>
+            <label>Пароль:</label>
+            <input type="password" name="password" required>
+        </div>
+
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+
+    <div>
+        <p>Уже есть аккаунт? <a href="/login">Войти</a></p>
+    </div>
+
+    <section>
+        <h3>Условия использования</h3>
+        <p>
+            Регистрируясь, вы соглашаетесь с нашими 
+            <a href="/terms">правилами</a> и подтверждаете, что вам исполнилось 18 лет.
+        </p>
+    </section>
+{% endblock %}

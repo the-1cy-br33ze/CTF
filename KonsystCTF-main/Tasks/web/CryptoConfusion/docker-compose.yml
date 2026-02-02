@@ -1,0 +1,5 @@
+services:
+  web:
+    image: dhxgc/consist:cryptoconfusion
+    ports:
+      - "5000:5000"

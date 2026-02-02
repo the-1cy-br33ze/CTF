@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}API Документация{% endblock %}
+
+{% block content %}
+    <h1>API для разработчиков</h1>
+    
+    <section>
+        <h2>Подпись запросов</h2>
+        <pre>
+Для подписи запросов используйте JWT-токен в заголовке:
+Authorization: Bearer &lt;token&gt;
+
+Публичный ключ для проверки подписей:
+<textarea readonly style="width: 100%; height: 150px;">{{ pub_key }}</textarea>
+        </pre>
+    </section>
+
+    <section>
+        <h2>Пример запроса</h2>
+        <pre>
+GET /v1/balance
+Headers:
+    Authorization: Bearer eyJhbGciOiJIUzI1NiIs...
+
+Response:
+{
+    "btc": "0.000000",
+    "eth": "0.000000"
+}
+        </pre>
+    </section>
+{% endblock %}

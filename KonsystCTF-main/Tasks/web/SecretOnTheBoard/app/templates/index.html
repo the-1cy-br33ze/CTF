@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Доска объявлений</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="board">
+        <h1>Доска быстрых объявлений📌</h1>
+        
+        <div class="announcements-grid">
+            {% for note in announcements %}
+            <div class="note {{ note.color }} {% if note.is_protected %}protected{% endif %}" 
+                 style="transform: rotate({{ [-2, -1, 0, 1, 2]|random }}deg)">
+                <div class="tape"></div>
+                <a href="/note/{{ note.id }}" class="note-link">
+                    <div class="protection-label">{% if note.is_protected %}🔒ЗАЩИЩЕНО{% endif %}</div>
+                    <div class="content">{{ note.content|safe }}</div>
+                </a>
+                <div class="timestamp">{{ note.timestamp }}</div>
+                {% if note.is_system %}
+                <div class="system-label">объявление часа!</div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+        <form action="/post" method="POST" class="post-form">
+            <textarea name="content" placeholder="Ваше объявление..." required></textarea>
+            <label class="protect-check">
+                <input type="checkbox" name="protect"> Защитить объявление
+            </label>
+            <button type="submit">Прикрепить стикер</button>
+        </form>
+    </div>
+</body>
+</html>
