@@ -1,0 +1,21 @@
+'8i2:L5!Ug2iL*M
+
+
+
+
+flag{44.054919,42.860586} exiftool вытаскивает методанные с фото 
+flag{Санкт-Петербург}
+flag{Jean-Michel-Jarre} из вариантов еще Space
+
+
+flag={ThE_Bet_LoGo=} -> flag{ThE_Bet_LoGo} ->flag{ThE_Be$t_LoGo} https://anytools.pro/ru/help/text/remove-chars
+
+метод call 10 -> flag{P0ker_StrAnge_Rule$}
+
+ZmxhZ3tJX2QwX2ExMV9jMHJyZWN0XzEkbnRfIXQ/fQ== -> flag{I_d0_a11_c0rrect_1$nt_!t?}  https://anytools.pro/ru/help/text/remove-chars
+
+AleXX -> XOR with Key -> flag{SuPeRalex$ecRetKEy}
+
+Z21iaHx4aTFgbTRndWB1aTIlYGk0c2ZAfiUl -> gmbh|xi1`m4gu`ui2%`i4sf@~%% -> flag{wh0_l3ft_th1$_h3re?} файл DVIG_PO_ASCII.py
+
+flag{7 r0J4N_h0 r5E} -> flag{7r0J4N_h0r5E} -смотреть utf-8 файла
