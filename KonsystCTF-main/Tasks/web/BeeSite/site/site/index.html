@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Натуральный мёд "Золотой улей"</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FFA726;
+            --primary-dark: #F57C00;
+            --secondary: #4E342E;
+            --light: #FFF8E1;
+            --dark: #212121;
+            --white: #FFFFFF;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--secondary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1587049352851-8d4e89133924?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        /* About Section */
+        .section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 36px;
+            color: var(--secondary);
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Products Section */
+        .products {
+            background-color: var(--white);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .product-image {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+        
+        .product-price {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+        
+        /* Benefits Section */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .benefit-card {
+            text-align: center;
+            padding: 30px;
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .benefit-icon {
+            font-size: 50px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .benefit-title {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--secondary);
+        }
+        
+        /* Contact Section */
+        .contact {
+            background-color: var(--secondary);
+            color: var(--white);
+        }
+        
+        .contact .section-title {
+            color: var(--white);
+        }
+        
+        .contact-container {
+            display: flex;
+            gap: 50px;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-form {
+            flex: 1;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .contact-icon {
+            font-size: 24px;
+            color: var(--primary);
+            margin-right: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        
+        .footer-links a {
+            color: var(--white);
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .social-links {
+            margin-bottom: 20px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            color: var(--white);
+            background-color: rgba(255,255,255,0.1);
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            border-radius: 50%;
+            margin: 0 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                padding: 15px 0;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+            }
+            
+            nav ul li {
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+            }
+ 	        .bee-icon {
+            width: 100px;
+            margin: 20px auto;
+        }
+	}
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+        <a href="#" class="logo">Золотой <span>улей</span></a> 
+            <nav>
+                <ul>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#products">Наш мёд</a></li>
+                    <li><a href="#benefits">Польза</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Натуральный мёд с пасеки</h1>
+            <p>Собранный в экологически чистых районах с любовью и заботой о вашем здоровье</p>
+            <a href="#products" class="btn">Выбрать мёд</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">О нашей пасеке</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Наша семейная пасека существует уже более 20 лет. Мы занимаемся пчеловодством с любовью и уважением к природе. Наши ульи расположены в экологически чистых районах, вдали от промышленных зон и крупных дорог.</p>
+                    <p>Мы не используем химические добавки и не нагреваем мёд при фасовке, чтобы сохранить все его полезные свойства. Каждая баночка нашего мёда - это результат кропотливого труда пчёл и нашей заботы о качестве продукта.</p>
+                    <p>Попробовав наш мёд однажды, вы станете нашим постоянным клиентом!</p>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1587049352851-8d4e89133924?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Пасека">
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Products Section -->
+<section id="products" class="section products">
+    <div class="container">
+        <h2 class="section-title">Наш мёд</h2>
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://i.siteapi.org/mJP8Fq5Zn6ntJz_O-NobjuiT9HI=/fit-in/1024x768/center/top/c09cc565a8ef0a9.s.siteapi.org/img/fkzjn021p80swkk0wc88044go48wss" alt="Цветочный мёд">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Цветочный мёд</h3>
+                    <p>Собран на лугах с разнотравьем. Имеет нежный аромат и мягкий вкус.</p>
+                    <div class="product-price">450 ₽ / 500 г</div>
+                    <a href="#cart" class="btn add-to-cart" 
+                       data-product="Цветочный мёд" 
+                       data-price="450"
+                       data-image="https://i.siteapi.org/mJP8Fq5Zn6ntJz_O-NobjuiT9HI=/fit-in/1024x768/center/top/c09cc565a8ef0a9.s.siteapi.org/img/fkzjn021p80swkk0wc88044go48wss"
+                       data-weight="500 г">
+                       Заказать
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Product 2 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://i.siteapi.org/1GMYDQpKpwyRPh5xS4PB6vr_G2Q=/fit-in/1024x768/center/top/c09cc565a8ef0a9.s.siteapi.org/img/8bjqi0v7sdooggc044gk00k84k0co0" alt="Гречишный мёд">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Гречишный мёд</h3>
+                    <p>Тёмный мёд с насыщенным вкусом и высоким содержанием железа.</p>
+                    <div class="product-price">550 ₽ / 500 г</div>
+                    <a href="#cart" class="btn add-to-cart" 
+                       data-product="Гречишный мёд" 
+                       data-price="550"
+                       data-image="https://i.siteapi.org/1GMYDQpKpwyRPh5xS4PB6vr_G2Q=/fit-in/1024x768/center/top/c09cc565a8ef0a9.s.siteapi.org/img/8bjqi0v7sdooggc044gk00k84k0co0"
+                       data-weight="500 г">
+                       Заказать
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Product 3 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1587049352851-8d4e89133924?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Липовый мёд">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Липовый мёд</h3>
+                    <p>Светлый мёд с характерным ароматом липы. Отлично помогает при простуде.</p>
+                    <div class="product-price">600 ₽ / 500 г</div>
+                    <a href="#cart" class="btn add-to-cart" 
+                       data-product="Липовый мёд" 
+                       data-price="600"
+                       data-image="https://images.unsplash.com/photo-1587049352851-8d4e89133924?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                       data-weight="500 г">
+                       Заказать
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Product 4 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1471193945509-9ad0617afabf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Мёд с пергой">
+                </div>
+                <div class="product-info">
+                    <h3 class="product-title">Мёд с пергой</h3>
+                    <p>Натуральный энергетик с высоким содержанием витаминов и аминокислот.</p>
+                    <div class="product-price">750 ₽ / 500 г</div>
+                    <a href="#cart" class="btn add-to-cart" 
+                       data-product="Мёд с пергой" 
+                       data-price="750"
+                       data-image="https://images.unsplash.com/photo-1471193945509-9ad0617afabf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                       data-weight="500 г">
+                       Заказать
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="section">
+        <div class="container">
+            <h2 class="section-title">Польза натурального мёда</h2>
+            <div class="benefits-grid">
+                <!-- Benefit 1 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="benefit-title">Укрепляет иммунитет</h3>
+                    <p>Натуральный мёд содержит антиоксиданты и ферменты, которые помогают организму бороться с инфекциями.</p>
+                </div>
+                
+                <!-- Benefit 2 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="benefit-title">Улучшает работу мозга</h3>
+                    <p>Мёд способствует улучшению памяти и концентрации, снижает уровень стресса.</p>
+                </div>
+                
+                <!-- Benefit 3 -->
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-battery-full"></i>
+                    </div>
+                    <h3 class="benefit-title">Источник энергии</h3>
+                    <p>Натуральные сахара в мёде дают быстрый и продолжительный заряд энергии без вреда для здоровья.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title">Свяжитесь с нами</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <p>с. Медовое, ул. Пчелиная, 15</p>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <p>+7 (123) 456-78-90</p>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <p>info@zolotoy-uley.ru</p>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <p>Работаем: Пн-Пт 9:00-18:00</p>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Ваше имя</label>
+                            <input type="text" id="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Телефон</label>
+                            <input type="tel" id="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Ваш заказ или вопрос</label>
+                            <textarea id="message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Отправить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+	<section id="cart" class="section" style="display:none;">
+        <div class="container">
+            <h2 class="section-title">Оформление заказа</h2>
+           <div class="cart-item">
+    <img src="путь/к/изображению.jpg" alt="Мёд">
+    <div class="cart-item-info">
+        <h4>Товар не выбран</h4>
+        <p>500 г</p>
+        <p>0 ₽</p>
+    </div>
+</div>
+<div class="total">
+    <p><strong>Итого: 0 ₽</strong></p>
+</div>
+                
+                <div class="payment-form">
+                    <h3>Данные для оплаты</h3>
+                    <form id="paymentForm">
+                        <div class="form-group">
+                            <label for="cardNumber">Номер карты</label>
+                            <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cardExpiry">Срок действия</label>
+                            <input type="text" id="cardExpiry" placeholder="MM/ГГ" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cardCvv">CVV код</label>
+                            <input type="text" id="cardCvv" placeholder="123" required>
+                        </div>
+                        <button type="submit" class="btn">Оплатить</button>
+                    </form>
+                    <div id="ctfResult" class="ctf-result"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Обновляем футер -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#about">О нас</a>
+                <a href="#products">Наш мёд</a>
+                <a href="#" id="cartLink">Корзина</a>
+                <a href="#contact">Контакты</a>
+            </div>
+            <!-- Остальное содержимое футера -->
+        </div>
+    </footer>
+
+   <script>
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('cardNumber');
+    const output = document.getElementById('ctfResult');
+    const flagIssued = { value: false };
+
+    input.addEventListener('keydown', async function (e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const cmd = input.value.trim();
+            input.value = '';
+            output.style.display = 'block';
+            output.textContent += `\n> ${cmd}\n`;
+
+            try {
+                const res = await fetch(`http://localhost:5000/exec?cmd=${encodeURIComponent(cmd)}`);
+                const data = await res.json();
+
+                if (data.output) {
+                    output.textContent += data.output + '\n';
+                } else if (data.error) {
+                    output.textContent += `[Ошибка]: ${data.error}\n`;
+                } else {
+                    output.textContent += `[!] Неизвестный ответ сервера\n`;
+                }
+
+                // Отмечаем, что пользователь "хакнул" консоль
+                if (data.output && data.output.includes("flag")) {
+                    flagIssued.value = true;
+                }
+
+                output.scrollTop = output.scrollHeight;
+            } catch (err) {
+                output.textContent += "[!] Ошибка соединения с сервером\n";
+            }
+        }
+    });
+
+    // Обработка кнопки "Оплатить"
+    const form = document.getElementById('paymentForm');
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        if (flagIssued.value) {
+            output.textContent += `\n[✓] Оплата завершена.\nПоздравляем! Вы успешно получили ничего 🐝\n`;
+            output.textContent += `flag{"I'll tell you the password, but you owe me 25 jars of honey}"\n`;
+        } else {
+            output.textContent += `\n[✓] Оплата завершена. Спасибо за покупку нашего мёда!\n`;
+        }
+
+        output.scrollTop = output.scrollHeight;
+    });
+});
+
+</script>
+
+<script>
+document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const productData = {
+            name: this.getAttribute('data-product'),
+            price: this.getAttribute('data-price'),
+            image: this.getAttribute('data-image'),
+            weight: this.getAttribute('data-weight')
+        };
+        
+        // Сохраняем товар
+        localStorage.setItem('currentProduct', JSON.stringify(productData));
+        
+        // Обновляем корзину
+        updateCart();
+        
+        // Плавный скролл
+        document.getElementById('cart').style.display = 'block';
+        window.scrollTo({
+            top: document.getElementById('cart').offsetTop - 50,
+            behavior: 'smooth'
+        });
+    });
+});
+
+function updateCart() {
+    const product = JSON.parse(localStorage.getItem('currentProduct'));
+    
+    if(product) {
+        // Устанавливаем изображение с фиксированными размерами
+        const imgElement = document.querySelector('.cart-item img');
+        imgElement.src = product.image;
+        imgElement.alt = product.name;
+        imgElement.style.width = '120px'; // Фиксируем размер
+        imgElement.style.height = '120px';
+        
+        // Обновляем остальные данные
+        document.querySelector('.cart-item-info h4').textContent = product.name;
+        document.querySelector('.cart-item-info p:nth-child(2)').textContent = product.weight;
+        document.querySelector('.cart-item-info p:nth-child(3)').textContent = product.price + ' ₽';
+        document.querySelector('.total strong').textContent = `Итого: ${product.price} ₽`;
+    }
+}
+
+// Загружаем товар при открытии страницы
+document.addEventListener('DOMContentLoaded', function() {
+    updateCart();
+});
+</script>
+</body>
+</html>
